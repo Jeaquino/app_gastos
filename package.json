@@ -1,0 +1,17 @@
+{
+  "name": "app_gastos",
+  "version": "1.0.0",
+  "description": "App para sumar los gastos del mes",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gastos"
+  ],
+  "author": "Julian A.",
+  "license": "ISC",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
