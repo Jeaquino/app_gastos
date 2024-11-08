@@ -44,19 +44,31 @@ const matriz = [
 
 // console.log("eleccion de la semana", semana);
 
-function GastosDeTodaLaSemana(semana) {
+function GastosDeTodaLaSemana(elNumeroDeLaSemana) {
     let acumulador = 0;
 
-    for(let index = 0; index < matriz[semana-1].length; index++) {
-        acumulador += matriz[semana-1][index];
+
+    if(isNaN(+elNumeroDeLaSemana) || elNumeroDeLaSemana === true || elNumeroDeLaSemana === false){
+        console.log("El valor ingresado no es un numero")
+        return;
     }
+
+    if(+elNumeroDeLaSemana > matriz.length){
+        console.log("La elNumeroDeLaSemana indicada no existe");
+        return;
+    }
+
+    for(let index = 0; index < matriz[elNumeroDeLaSemana-1].length; index++) {
+        acumulador += matriz[elNumeroDeLaSemana-1][index];
+    }
+
     return acumulador;
 }
 
 function GastosDeTodaLaSemana2(semana){
     
     let acumular = matriz[semana-1].reduce((acumulador,valorActual,index) => {
-        console.log("Estoy en el indice: ", index, "El valor actual es", valorActual, "El valor actual del acumulador es", acumulador);
+        //console.log("Estoy en el indice: ", index, "El valor actual es", valorActual, "El valor actual del acumulador es", acumulador);
         return acumulador + valorActual
     },0)
 
@@ -73,7 +85,53 @@ function GastosDeUnDiaDeLaSemana(dia) {
     return acumulador
 }
 
+function GastosDeUnDiaDeLaSemana2(dia) {
+    
+    let acumulador = matriz.reduce( function(acumulador,valorActual){
+        return acumulador + valorActual[dia-1]
+    },0)
+    
+    
+    return acumulador
+}
+
+function getBalance(semana,dia){
+    const balance = {
+        gastoDeLaSemana: GastosDeTodaLaSemana2(semana),
+        gastosDeUnDiaAlMes: GastosDeUnDiaDeLaSemana2(dia)
+    }
+
+    return balance
+}
+
+//const seamana = prompt("Indicame la semana que deseas calcular")
+console.log(GastosDeTodaLaSemana(false));
+// console.log(balance(1,3));
 // console.log(GastosDeTodaLaSemana(1));
 // console.log(GastosDeTodaLaSemana2(1));
-console.table(matriz);
-console.log(GastosDeUnDiaDeLaSemana(1));
+// console.table(matriz);
+
+// console.log(GastosDeUnDiaDeLaSemana(1));
+// console.log("-------------------------------");
+
+// console.log(GastosDeUnDiaDeLaSemana2(1));
+
+// function saludo(cadena){
+
+// }
+
+// const contar = () => {}
+
+// const resultado = contar(1,2);
+
+
+// function getPersona(nombre,edad,nacionalidad){
+//     const persona = {
+//         nombre,
+//         edad,
+//         nacionalidad
+//     }
+//     return persona
+// };
+
+// const andres = getPersona("Andres",43,"Argentina");
